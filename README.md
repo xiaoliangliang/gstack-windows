@@ -80,6 +80,7 @@ Your saved login profile lives in `./.gstack/chrome-profile` for that project, a
 | Authenticated browsing on Windows | Cookie import framing | Persistent Chrome login-session framing |
 | Chrome/Edge encryption limitations | Easy to miss | Called out explicitly with recommended fallback |
 | One-step global install | Manual clone + setup | `install-codex-global.ps1` |
+| Existing upstream install migration | Manual | installer can repoint an existing global install to this fork |
 | Environment diagnosis | Manual | `doctor.ps1` |
 | Public repo polish | Generic fork feel | release, topics, templates, docs, CI |
 

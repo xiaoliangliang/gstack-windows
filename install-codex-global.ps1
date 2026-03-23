@@ -1,11 +1,11 @@
-$ErrorActionPreference = 'Stop'
-
 [CmdletBinding()]
 param(
   [string]$InstallDir = (Join-Path $env:USERPROFILE '.codex\skills\gstack'),
   [string]$RepoUrl = 'https://github.com/xiaoliangliang/gstack-windows.git',
   [switch]$Force
 )
+
+$ErrorActionPreference = 'Stop'
 
 function Require-Command {
   param([string]$Name)
@@ -38,6 +38,23 @@ function Get-DefaultBranch {
   return 'main'
 }
 
+function Get-OriginUrl {
+  param([string]$RepoDir)
+
+  $remote = git -C $RepoDir remote get-url origin 2>$null
+  if ($LASTEXITCODE -eq 0 -and $remote) {
+    return ($remote | Out-String).Trim()
+  }
+
+  return $null
+}
+
+function Test-IsForkRemote {
+  param([string]$RemoteUrl)
+
+  return [bool]($RemoteUrl -match 'xiaoliangliang/gstack-windows(?:\.git)?$')
+}
+
 Write-Host "Preflight checks passed."
 
 $parentDir = Split-Path -Parent $InstallDir
@@ -50,6 +67,16 @@ if (Test-Path $InstallDir) {
     $dirty = git -C $InstallDir status --porcelain
     if (($dirty | Out-String).Trim()) {
       throw "Existing install has uncommitted changes at $InstallDir`nCommit or discard those changes before running the installer again."
+    }
+
+    $originUrl = Get-OriginUrl $InstallDir
+    if (-not $originUrl) {
+      Write-Host "No origin remote found. Setting origin to $RepoUrl ..."
+      git -C $InstallDir remote add origin $RepoUrl
+    } elseif (-not (Test-IsForkRemote $originUrl)) {
+      Write-Host "Existing install points to $originUrl"
+      Write-Host "Switching origin to $RepoUrl ..."
+      git -C $InstallDir remote set-url origin $RepoUrl
     }
 
     $defaultBranch = Get-DefaultBranch $InstallDir

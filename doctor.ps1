@@ -140,6 +140,9 @@ if ($currentProjectRoot) {
 
 Write-Host ""
 Write-Host "Recommended next commands:"
+if ($activeInstall -and -not $installIsFork -and $currentProjectRoot -and (Test-Path (Join-Path $currentProjectRoot 'install-codex-global.ps1'))) {
+  Write-Host "  powershell -ExecutionPolicy Bypass -File `"$currentProjectRoot\install-codex-global.ps1`""
+}
 Write-Host "  powershell -ExecutionPolicy Bypass -File `"$recommendedInstall\setup.ps1`""
 if ($currentProjectRoot -and $projectHasProfile) {
   Write-Host "  browse login-session status"
