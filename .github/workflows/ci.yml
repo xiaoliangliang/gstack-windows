@@ -1,0 +1,39 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  smoke:
+    strategy:
+      fail-fast: false
+      matrix:
+        os:
+          - windows-latest
+          - ubuntu-latest
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - name: Install dependencies
+        run: bun install
+
+      - name: Install Playwright Chromium
+        run: bun x playwright install chromium
+
+      - name: Check generated skill docs
+        run: bun run gen:skill-docs --dry-run
+
+      - name: Validate skills
+        run: bun run skill:check
+
+      - name: Run smoke tests
+        run: bun test test/gen-skill-docs.test.ts browse/test/find-browse.test.ts browse/test/config.test.ts

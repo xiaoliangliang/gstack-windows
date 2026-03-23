@@ -1,5 +1,11 @@
 # Changelog
 
+## Unreleased
+
+- **The repo now explains itself much better on first visit.** Added a Windows auth-flow diagram, a compatibility matrix, a real FAQ, and command recipes so new users can understand what works without digging through source code or guessing from issue threads.
+- **The installer and doctor are more reassuring.** `install-codex-global.ps1` now does clearer preflight checks, protects dirty installs, runs the doctor automatically, and points users at the docs. `doctor.ps1` now reports the install remote and the current project's saved login-profile state.
+- **Contributor guidance now matches the product.** `CLAUDE.md` was rewritten to be Codex-first, Windows-first, and aligned with the actual install path and persistent-session model used by this fork.
+
 ## 0.5.1 — 2026-03-23
 
 - **The public repo now looks like a maintained project.** Added GitHub-ready community files (`SECURITY.md`, `SUPPORT.md`, PR template, issue templates) so contributors have somewhere clear to start instead of landing on an empty shell.

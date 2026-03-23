@@ -4,6 +4,14 @@
 
 For normal usage questions, installation trouble, or Windows-specific behavior, please open a GitHub issue.
 
+Before filing, it is worth checking:
+
+- `docs/QUICKSTART-WINDOWS.md`
+- `docs/AUTHENTICATED-BROWSING.md`
+- `docs/COMPATIBILITY-WINDOWS.md`
+- `docs/FAQ.md`
+- `docs/TROUBLESHOOTING-WINDOWS.md`
+
 ## Please Include
 
 - your OS version
@@ -40,4 +48,10 @@ Then sign in manually once and switch to:
 
 ```powershell
 browse login-session headless
+```
+
+If possible, also include the output of:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .\doctor.ps1
 ```

@@ -1,7 +1,7 @@
 {
   "name": "gstack-windows",
   "version": "0.5.1",
-  "description": "Windows + Codex focused gstack fork with fast browser automation, persistent Chrome login sessions, and authenticated QA workflows.",
+  "description": "Windows + Codex browser automation with persistent Chrome login sessions, authenticated QA workflows, and practical Windows-first docs.",
   "license": "MIT",
   "type": "module",
   "homepage": "https://github.com/xiaoliangliang/gstack-windows",
@@ -21,8 +21,10 @@
     "dev": "bun run browse/src/cli.ts",
     "server": "bun run browse/src/server.ts",
     "test": "bun test browse/test/ test/ --ignore test/skill-e2e.test.ts --ignore test/skill-llm-eval.test.ts",
+    "test:smoke": "bun test test/gen-skill-docs.test.ts browse/test/find-browse.test.ts browse/test/config.test.ts",
     "test:evals": "EVALS=1 bun test test/skill-llm-eval.test.ts test/skill-e2e.test.ts",
     "test:e2e": "EVALS=1 bun test test/skill-e2e.test.ts",
+    "ci:check": "bun run gen:skill-docs --dry-run && bun run skill:check && bun run test:smoke",
     "skill:check": "bun run scripts/skill-check.ts",
     "dev:skill": "bun run scripts/dev-skill.ts",
     "start": "bun run browse/src/server.ts",
@@ -53,7 +55,11 @@
     "cookie-import",
     "app-bound-cookie-encryption",
     "ai-agent",
-    "devtools"
+    "devtools",
+    "authenticated-browser",
+    "windows-automation",
+    "douyin",
+    "codex-skill"
   ],
   "devDependencies": {
     "@anthropic-ai/sdk": "^0.78.0"

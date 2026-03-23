@@ -1,0 +1,54 @@
+<svg width="1280" height="640" viewBox="0 0 1280 640" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1280" height="640" rx="28" fill="#0B1220"/>
+  <rect x="24" y="24" width="1232" height="592" rx="24" fill="url(#bg)"/>
+  <g opacity="0.15">
+    <path d="M80 120H1200" stroke="#7DD3FC" stroke-width="1"/>
+    <path d="M80 220H1200" stroke="#7DD3FC" stroke-width="1"/>
+    <path d="M80 320H1200" stroke="#7DD3FC" stroke-width="1"/>
+    <path d="M80 420H1200" stroke="#7DD3FC" stroke-width="1"/>
+    <path d="M80 520H1200" stroke="#7DD3FC" stroke-width="1"/>
+    <path d="M180 80V560" stroke="#7DD3FC" stroke-width="1"/>
+    <path d="M380 80V560" stroke="#7DD3FC" stroke-width="1"/>
+    <path d="M580 80V560" stroke="#7DD3FC" stroke-width="1"/>
+    <path d="M780 80V560" stroke="#7DD3FC" stroke-width="1"/>
+    <path d="M980 80V560" stroke="#7DD3FC" stroke-width="1"/>
+  </g>
+
+  <rect x="72" y="82" width="510" height="476" rx="24" fill="#07111F" fill-opacity="0.72" stroke="#1E293B"/>
+  <text x="110" y="150" fill="#F8FAFC" font-family="Segoe UI, Arial, sans-serif" font-size="54" font-weight="700">gstack-windows</text>
+  <text x="110" y="198" fill="#93C5FD" font-family="Segoe UI, Arial, sans-serif" font-size="24" font-weight="600">Windows + Codex browser automation that actually keeps login state</text>
+
+  <rect x="110" y="246" width="404" height="56" rx="14" fill="#0F172A" stroke="#1D4ED8"/>
+  <text x="138" y="282" fill="#E2E8F0" font-family="Consolas, monospace" font-size="20">browse login-session headed ...</text>
+
+  <g font-family="Segoe UI, Arial, sans-serif" font-size="24" fill="#E2E8F0">
+    <text x="112" y="356">1. Codex-first install path: <tspan fill="#7DD3FC">~/.codex/skills/gstack</tspan></text>
+    <text x="112" y="406">2. Persistent Chrome login sessions for real authenticated browsing</text>
+    <text x="112" y="456">3. Clear Windows fallback when Chrome cookie decryption is blocked</text>
+    <text x="112" y="506">4. Better docs, one-click install, and practical Douyin guidance</text>
+  </g>
+
+  <rect x="694" y="114" width="494" height="414" rx="28" fill="#08121E" fill-opacity="0.78" stroke="#1E293B"/>
+  <rect x="734" y="164" width="142" height="86" rx="18" fill="#0F172A" stroke="#38BDF8"/>
+  <rect x="922" y="164" width="212" height="86" rx="18" fill="#0F172A" stroke="#F59E0B"/>
+  <rect x="734" y="320" width="400" height="86" rx="18" fill="#0F172A" stroke="#34D399"/>
+  <rect x="804" y="444" width="258" height="48" rx="12" fill="#1D4ED8"/>
+
+  <text x="782" y="216" text-anchor="middle" fill="#F8FAFC" font-family="Segoe UI, Arial, sans-serif" font-size="28" font-weight="700">Codex</text>
+  <text x="1028" y="204" text-anchor="middle" fill="#F8FAFC" font-family="Segoe UI, Arial, sans-serif" font-size="24" font-weight="700">Chrome Login Session</text>
+  <text x="1028" y="232" text-anchor="middle" fill="#FCD34D" font-family="Segoe UI, Arial, sans-serif" font-size="18">headed first, then reusable</text>
+  <text x="934" y="372" text-anchor="middle" fill="#F8FAFC" font-family="Segoe UI, Arial, sans-serif" font-size="30" font-weight="700">Logged-in browsing on Windows</text>
+  <text x="934" y="472" text-anchor="middle" fill="#DBEAFE" font-family="Segoe UI, Arial, sans-serif" font-size="22" font-weight="700">Douyin • GitHub • staging apps</text>
+
+  <path d="M876 208H912" stroke="#E2E8F0" stroke-width="4" stroke-linecap="round"/>
+  <path d="M902 196L916 208L902 220" stroke="#E2E8F0" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M934 250V304" stroke="#E2E8F0" stroke-width="4" stroke-linecap="round"/>
+  <path d="M922 292L934 306L946 292" stroke="#E2E8F0" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <defs>
+    <linearGradient id="bg" x1="48" y1="40" x2="1232" y2="600" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#10233E"/>
+      <stop offset="1" stop-color="#0B1728"/>
+    </linearGradient>
+  </defs>
+</svg>

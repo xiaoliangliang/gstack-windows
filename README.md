@@ -1,100 +1,172 @@
 # gstack-windows
 
 [![Latest Release](https://img.shields.io/github/v/release/xiaoliangliang/gstack-windows)](https://github.com/xiaoliangliang/gstack-windows/releases)
-[![MIT License](https://img.shields.io/github/license/xiaoliangliang/gstack-windows)](LICENSE)
+[![CI](https://img.shields.io/github/actions/workflow/status/xiaoliangliang/gstack-windows/ci.yml?label=ci)](https://github.com/xiaoliangliang/gstack-windows/actions/workflows/ci.yml)
 [![Skill Docs](https://img.shields.io/github/actions/workflow/status/xiaoliangliang/gstack-windows/skill-docs.yml?label=skill-docs)](https://github.com/xiaoliangliang/gstack-windows/actions/workflows/skill-docs.yml)
+[![MIT License](https://img.shields.io/github/license/xiaoliangliang/gstack-windows)](LICENSE)
 
-`gstack-windows` is a Windows + Codex focused fork of [gstack](https://github.com/garrytan/gstack): fast browser automation, QA skills, and authenticated browsing workflows that are practical on Windows.
+![gstack-windows hero](assets/hero.svg)
 
-This fork exists for one reason: modern Chrome and Edge on Windows often protect default-profile cookies with app-bound encryption, so "just import my real browser cookies" is no longer a reliable story. This repo keeps the original gstack workflow model, but makes the Windows path explicit and usable.
+**Make Codex browse logged-in Windows sites without fighting Chrome cookie encryption.**
 
-## What This Fork Changes
+`gstack-windows` is a Windows + Codex focused fork of [gstack](https://github.com/garrytan/gstack). It keeps the original fast browser automation and slash-skill workflow, but reshapes the experience around the thing Windows users actually need: a reliable path to authenticated browsing.
 
-- Makes `$CODEX_HOME` / `~/.codex/skills/gstack` the primary install path.
-- Ships a real Windows bootstrap script: [`setup.ps1`](setup.ps1).
-- Treats persistent Chrome login sessions as the primary Windows auth path.
-- Keeps direct cookie import when the source browser/profile still allows it.
-- Repoints upgrade/update flows to this repository instead of upstream.
+## Why This Fork Exists
 
-## What Works Well On Windows
+On modern Windows setups, Chrome and Edge may protect default-profile cookies with app-bound encryption. That means a lot of “import your real browser cookies” tooling becomes unreliable right where people need it most.
 
-- `/browse` for navigation, screenshots, DOM inspection, forms, uploads, console logs, and network debugging
-- `/setup-browser-cookies` for cookie-domain discovery and browser-session import where decryption is possible
-- `browse login-session headed|headless|status|stop` for gstack-managed persistent Chrome sessions
-- `/qa`, `/qa-only`, `/qa-design-review` and the planning/review/ship skills
-- Git Bash + PowerShell mixed workflows inside Codex
+This repo takes a more practical approach:
 
-## Important Limitations
+- prefer `~/.codex/skills/gstack`
+- keep direct cookie import when it works
+- make persistent Chrome login sessions the first-class Windows auth story
+- explain limitations clearly instead of pretending everything imported fine
 
-- gstack cannot magically extract login cookies from every default Chrome/Edge profile on Windows. If app-bound cookie encryption is enabled, out-of-process cookie decryption may fail by design.
-- Sites with CAPTCHA, SMS login, WebAuthn, 2FA, or aggressive bot checks may still require a manual step.
-- Douyin works best with `login-session headed` after you sign in manually. Headless replay may still trigger anti-bot or captcha depending on the account, IP, and site state.
-- This repo does not bypass anti-bot protections. It helps Codex reuse a legitimate logged-in browser state that you created yourself.
+## 90-Second Quickstart
 
-## Recommended Windows Auth Flow
+### 1. Install globally for Codex
 
-For sites where default-browser cookie import is blocked, use the persistent login-session flow:
+From a local checkout:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .\install-codex-global.ps1
+```
+
+### 2. Verify your environment
+
+```powershell
+powershell -ExecutionPolicy Bypass -File "$env:USERPROFILE\.codex\skills\gstack\doctor.ps1"
+```
+
+### 3. Create a persistent logged-in session
 
 ```powershell
 browse login-session headed https://www.douyin.com/
 ```
 
-1. A real Chrome window opens.
-2. Sign in manually once.
-3. After the session is confirmed, switch to headless reuse:
+Log in manually once, then switch to:
 
 ```powershell
 browse login-session headless
 ```
 
-4. Now regular commands reuse that saved browser state:
+Now normal `browse` commands reuse that login state.
+
+## The 5-Minute Win
+
+Inside any project repo:
 
 ```powershell
+browse login-session headed https://www.douyin.com/
+```
+
+Sign in once in the opened browser window, then:
+
+```powershell
+browse login-session headless
 browse goto https://www.douyin.com/
 browse snapshot -i
 browse screenshot
 ```
 
-Useful helpers:
+Your saved login profile lives in `./.gstack/chrome-profile` for that project, and `.gstack/` is auto-added to `.gitignore`.
+
+## Why People Will Prefer This Over Upstream
+
+| Area | Upstream gstack | gstack-windows |
+|------|------------------|----------------|
+| Primary install path | Claude-oriented | Codex-first: `~/.codex/skills/gstack` |
+| Windows docs | Partial | Windows-first quickstart and troubleshooting |
+| Authenticated browsing on Windows | Cookie import framing | Persistent Chrome login-session framing |
+| Chrome/Edge encryption limitations | Easy to miss | Called out explicitly with recommended fallback |
+| One-step global install | Manual clone + setup | `install-codex-global.ps1` |
+| Environment diagnosis | Manual | `doctor.ps1` |
+| Public repo polish | Generic fork feel | release, topics, templates, docs, CI |
+
+## What Works Especially Well
+
+- `/browse` for navigation, screenshots, DOM inspection, forms, uploads, console logs, and network debugging
+- `/setup-browser-cookies` when direct Chromium cookie import is possible
+- `browse login-session headed|headless|status|stop` for persistent authenticated browsing
+- `/qa`, `/qa-only`, `/qa-design-review`, `/review`, `/ship`, and the planning skills
+- mixed PowerShell + Git Bash workflows inside Codex
+
+## The Main Windows Auth Strategy
+
+For sites where default-profile cookie import is blocked, the recommended path is:
 
 ```powershell
-browse login-session status
-browse login-session stop
+browse login-session headed https://target-site.com/
 ```
+
+![Windows auth flow](assets/windows-auth-flow.svg)
+
+Then:
+
+1. Sign in manually in the real browser window
+2. Confirm the session is stable
+3. Reuse it headlessly:
+
+```powershell
+browse login-session headless
+```
+
+This is the best default for:
+
+- Douyin
+- GitHub
+- internal staging environments
+- dashboards that require a stable authenticated browser context
+
+## Where the Saved Session Lives
+
+Persistent login sessions are project-local instead of hiding in a random temp folder:
+
+- profile: `.gstack/chrome-profile`
+- launch config: `.gstack/browse-launch.json`
+- logs and runtime state: `.gstack/`
+- git safety: `.gstack/` is auto-added to `.gitignore`
+
+That makes the workflow easier to trust, easier to inspect, and much easier to clean up.
 
 ## Direct Cookie Import
 
-If the source profile is decryptable, you can still use the cookie picker flow:
+If the source profile is decryptable, direct cookie import still works:
 
 ```powershell
 browse cookie-import-browser
 ```
 
-Or direct domain import:
+Or:
 
 ```powershell
 browse cookie-import-browser chrome --domain douyin.com
 ```
 
-When Windows app-bound encryption blocks the default profile, gstack should explain the limitation instead of silently pretending it worked. In that case, switch to the persistent login-session flow above.
+If Windows reports a decryption limitation, switch to the persistent login-session flow instead.
 
-## Install
+## Important Limitations
 
-### Global install for Codex on Windows
+- This repo cannot magically decrypt every Chrome or Edge default profile on Windows
+- CAPTCHA, WebAuthn, SMS login, or stronger anti-bot controls may still require a manual step
+- Douyin usually works best with `login-session headed` as the first step
+- This project does **not** bypass anti-bot systems; it preserves a legitimate user-created login state for Codex automation
+
+## Install Options
+
+### Global install
 
 ```powershell
-git clone https://github.com/xiaoliangliang/gstack-windows.git "$env:USERPROFILE\\.codex\\skills\\gstack"
-powershell -ExecutionPolicy Bypass -File "$env:USERPROFILE\\.codex\\skills\\gstack\\setup.ps1"
+git clone https://github.com/xiaoliangliang/gstack-windows.git "$env:USERPROFILE\.codex\skills\gstack"
+powershell -ExecutionPolicy Bypass -File "$env:USERPROFILE\.codex\skills\gstack\setup.ps1"
 ```
 
-### Optional project-vendored copy
-
-If you want the repo to travel with a project:
+### Project-vendored install
 
 ```powershell
-New-Item -ItemType Directory -Force -Path ".codex\\skills" | Out-Null
-Copy-Item "$env:USERPROFILE\\.codex\\skills\\gstack" ".codex\\skills\\gstack" -Recurse -Force
-powershell -ExecutionPolicy Bypass -File ".codex\\skills\\gstack\\setup.ps1"
+New-Item -ItemType Directory -Force -Path ".codex\skills" | Out-Null
+Copy-Item "$env:USERPROFILE\.codex\skills\gstack" ".codex\skills\gstack" -Recurse -Force
+powershell -ExecutionPolicy Bypass -File ".codex\skills\gstack\setup.ps1"
 ```
 
 ## Main Skills
@@ -114,15 +186,26 @@ powershell -ExecutionPolicy Bypass -File ".codex\\skills\\gstack\\setup.ps1"
 - `/document-release`
 - `/gstack-upgrade`
 
+## Documentation
+
+- [Windows Quickstart](docs/QUICKSTART-WINDOWS.md)
+- [Authenticated Browsing on Windows](docs/AUTHENTICATED-BROWSING.md)
+- [Command Recipes](docs/COMMAND-RECIPES.md)
+- [Windows Compatibility Matrix](docs/COMPATIBILITY-WINDOWS.md)
+- [FAQ](docs/FAQ.md)
+- [Windows Troubleshooting](docs/TROUBLESHOOTING-WINDOWS.md)
+- [Browser Technical Details](BROWSER.md)
+
 ## Development
 
 ```bash
 bun install
 bun run gen:skill-docs
-bun test browse/test/config.test.ts browse/test/find-browse.test.ts
+bun run skill:check
+bun run test:smoke
 ```
 
-On Windows, rebuilding the runtime shims:
+Windows runtime rebuild:
 
 ```powershell
 powershell -ExecutionPolicy Bypass -File .\setup.ps1

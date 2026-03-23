@@ -1,0 +1,49 @@
+<svg width="1200" height="320" viewBox="0 0 1200 320" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="320" rx="24" fill="#0E1726"/>
+  <rect x="36" y="36" width="1128" height="248" rx="20" fill="#111B2D" stroke="#2A3A56"/>
+  <text x="60" y="78" fill="#F5F7FB" font-family="Segoe UI, Arial, sans-serif" font-size="30" font-weight="700">
+    Windows authenticated browsing flow
+  </text>
+  <text x="60" y="108" fill="#9EB0C9" font-family="Segoe UI, Arial, sans-serif" font-size="16">
+    Reliable path for Chrome/Edge login reuse without pretending cookie decryption always works.
+  </text>
+
+  <rect x="60" y="142" width="250" height="108" rx="18" fill="#162338" stroke="#3C78D8"/>
+  <text x="82" y="176" fill="#69A3FF" font-family="Segoe UI, Arial, sans-serif" font-size="15" font-weight="700">
+    STEP 1
+  </text>
+  <text x="82" y="205" fill="#FFFFFF" font-family="Segoe UI, Arial, sans-serif" font-size="24" font-weight="700">
+    Headed login
+  </text>
+  <text x="82" y="232" fill="#B8C6DA" font-family="Consolas, monospace" font-size="15">
+    browse login-session headed
+  </text>
+
+  <path d="M340 196H442" stroke="#4C6EA7" stroke-width="4" stroke-linecap="round"/>
+  <path d="M430 186L442 196L430 206" stroke="#4C6EA7" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <rect x="472" y="142" width="250" height="108" rx="18" fill="#162338" stroke="#2FBF71"/>
+  <text x="494" y="176" fill="#6FE7A2" font-family="Segoe UI, Arial, sans-serif" font-size="15" font-weight="700">
+    STEP 2
+  </text>
+  <text x="494" y="205" fill="#FFFFFF" font-family="Segoe UI, Arial, sans-serif" font-size="24" font-weight="700">
+    Profile saved
+  </text>
+  <text x="494" y="232" fill="#B8C6DA" font-family="Consolas, monospace" font-size="15">
+    .gstack/chrome-profile
+  </text>
+
+  <path d="M752 196H854" stroke="#4C6EA7" stroke-width="4" stroke-linecap="round"/>
+  <path d="M842 186L854 196L842 206" stroke="#4C6EA7" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <rect x="884" y="142" width="250" height="108" rx="18" fill="#162338" stroke="#F0A93C"/>
+  <text x="906" y="176" fill="#FFD37A" font-family="Segoe UI, Arial, sans-serif" font-size="15" font-weight="700">
+    STEP 3
+  </text>
+  <text x="906" y="205" fill="#FFFFFF" font-family="Segoe UI, Arial, sans-serif" font-size="24" font-weight="700">
+    Headless reuse
+  </text>
+  <text x="906" y="232" fill="#B8C6DA" font-family="Consolas, monospace" font-size="15">
+    browse login-session headless
+  </text>
+</svg>
