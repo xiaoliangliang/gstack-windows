@@ -1,0 +1,29 @@
+name: Feature request
+description: Suggest an improvement for gstack-windows
+title: "[feature] "
+labels:
+  - enhancement
+body:
+  - type: input
+    id: problem
+    attributes:
+      label: What problem are you trying to solve?
+      placeholder: Describe the workflow pain
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed solution
+      placeholder: What should gstack-windows do?
+    validations:
+      required: true
+  - type: textarea
+    id: windows_context
+    attributes:
+      label: Windows / Codex context
+      description: Explain why this matters specifically in Windows, Codex, browser auth, or login-session workflows.
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered

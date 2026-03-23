@@ -20,7 +20,11 @@ allowed-tools:
 
 ```bash
 _GSTACK=""
-for _candidate in   "$HOME/.codex/skills/gstack"   "$HOME/.claude/skills/gstack"   ".codex/skills/gstack"   ".claude/skills/gstack"
+for _candidate in \
+  ".codex/skills/gstack" \
+  ".claude/skills/gstack" \
+  "$HOME/.codex/skills/gstack" \
+  "$HOME/.claude/skills/gstack"
 do
   if [ -x "$_candidate/bin/gstack-update-check" ]; then
     _GSTACK="$_candidate"

@@ -25,10 +25,10 @@ First, check if auto-upgrade is enabled:
 ```bash
 GSTACK_DIR=""
 for _candidate in \
-  "$HOME/.codex/skills/gstack" \
   ".codex/skills/gstack" \
-  "$HOME/.claude/skills/gstack" \
-  ".claude/skills/gstack"
+  ".claude/skills/gstack" \
+  "$HOME/.codex/skills/gstack" \
+  "$HOME/.claude/skills/gstack"
 do
   if [ -x "$_candidate/bin/gstack-config" ]; then
     GSTACK_DIR="$_candidate"

@@ -1,6 +1,6 @@
 {
   "name": "gstack-windows",
-  "version": "0.3.3",
+  "version": "0.5.1",
   "description": "Windows + Codex focused gstack fork with fast browser automation, persistent Chrome login sessions, and authenticated QA workflows.",
   "license": "MIT",
   "type": "module",

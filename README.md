@@ -1,5 +1,9 @@
 # gstack-windows
 
+[![Latest Release](https://img.shields.io/github/v/release/xiaoliangliang/gstack-windows)](https://github.com/xiaoliangliang/gstack-windows/releases)
+[![MIT License](https://img.shields.io/github/license/xiaoliangliang/gstack-windows)](LICENSE)
+[![Skill Docs](https://img.shields.io/github/actions/workflow/status/xiaoliangliang/gstack-windows/skill-docs.yml?label=skill-docs)](https://github.com/xiaoliangliang/gstack-windows/actions/workflows/skill-docs.yml)
+
 `gstack-windows` is a Windows + Codex focused fork of [gstack](https://github.com/garrytan/gstack): fast browser automation, QA skills, and authenticated browsing workflows that are practical on Windows.
 
 This fork exists for one reason: modern Chrome and Edge on Windows often protect default-profile cookies with app-bound encryption, so "just import my real browser cookies" is no longer a reliable story. This repo keeps the original gstack workflow model, but makes the Windows path explicit and usable.
@@ -123,6 +127,12 @@ On Windows, rebuilding the runtime shims:
 ```powershell
 powershell -ExecutionPolicy Bypass -File .\setup.ps1
 ```
+
+## Community
+
+- [Contributing](CONTRIBUTING.md)
+- [Security policy](SECURITY.md)
+- [Support](SUPPORT.md)
 
 ## Search-Friendly Keywords
 

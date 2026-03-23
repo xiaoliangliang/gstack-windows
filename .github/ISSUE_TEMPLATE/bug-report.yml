@@ -1,0 +1,68 @@
+name: Bug report
+description: Report a bug in gstack-windows
+title: "[bug] "
+labels:
+  - bug
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting a problem. For Windows/Codex issues, the environment details matter a lot.
+  - type: input
+    id: summary
+    attributes:
+      label: Summary
+      placeholder: Short description of the problem
+    validations:
+      required: true
+  - type: dropdown
+    id: shell
+    attributes:
+      label: Shell
+      options:
+        - PowerShell
+        - Git Bash
+        - Both
+        - Other
+    validations:
+      required: true
+  - type: dropdown
+    id: install_type
+    attributes:
+      label: Install type
+      options:
+        - Global ~/.codex/skills/gstack
+        - Project vendored .codex/skills/gstack
+        - Claude-compatible fallback path
+        - Not sure
+    validations:
+      required: true
+  - type: input
+    id: browser
+    attributes:
+      label: Browser
+      placeholder: Chrome / Edge / Brave / Arc / Comet
+  - type: textarea
+    id: command
+    attributes:
+      label: Command or workflow
+      placeholder: What did you run?
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs or screenshots
+      description: Please redact tokens, cookies, or sensitive values.

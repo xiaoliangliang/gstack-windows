@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.5.1 — 2026-03-23
+
+- **The public repo now looks like a maintained project.** Added GitHub-ready community files (`SECURITY.md`, `SUPPORT.md`, PR template, issue templates) so contributors have somewhere clear to start instead of landing on an empty shell.
+- **Codex-first contributor docs.** `CONTRIBUTING.md` now documents the actual `~/.codex/skills/gstack` and `.codex/skills/gstack` flows used by this fork instead of upstream Claude-only paths.
+- **Generated skill docs are easier to read.** The shared preamble and browse setup blocks now render multi-line Bash loops cleanly instead of collapsing into unreadable one-line candidate lists.
+- **Versioning is now aligned.** `VERSION` and `package.json` now point at the same release (`0.5.1`) so update checks, repo releases, and package metadata tell a consistent story.
+
+### For maintainers
+
+- Repository metadata is intended to be paired with GitHub-side About fields and a tagged release for better discoverability.
+
 ## 0.5.0 — 2026-03-16
 
 - **Your site just got a design review.** `/plan-design-review` opens your site and reviews it like a senior product designer — typography, spacing, hierarchy, color, responsive, interactions, and AI slop detection. Get letter grades (A-F) per category, a dual headline "Design Score" + "AI Slop Score", and a structured first impression that doesn't pull punches.
